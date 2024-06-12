@@ -6,7 +6,7 @@ import { useState } from "react";
 const page = () => {
   const [input, setInput] = useState("");
   const postToAI = async () => {
-    const response = await postPrompt();
+    const response = await postPrompt(input);
     console.log(response);
   };
 
@@ -27,18 +27,12 @@ const page = () => {
         />
         <button
           className="w-40 p-1 text-lg font-bold text-black bg-green-600 rounded-md hover:scale-105"
-          type="submit"
+          type="button"
+          onClick={() => postToAI()}
         >
           Enter
         </button>
       </form>
-      <button
-        className="w-40 p-1 text-lg font-bold text-black bg-green-600 rounded-md hover:scale-105"
-        type="button"
-        onClick={postToAI}
-      >
-        getAI
-      </button>
     </div>
   );
 };

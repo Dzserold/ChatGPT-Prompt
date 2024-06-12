@@ -13,8 +13,15 @@ const openai = new OpenAI({
 
 export async function postPrompt(prompt: String) {
   try {
+    //Geting text from ChatGPT based on user prompt
     const chatCompletion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `${prompt}` }],
+      messages: [
+        {
+          role: "user",
+          content: `Create a social media post text for this prompt. 
+          It needs to be polite, manny people agree on it. Here is the prompt: ${prompt}`,
+        },
+      ],
       model: "gpt-3.5-turbo",
     });
 
@@ -24,6 +31,7 @@ export async function postPrompt(prompt: String) {
       timestamp: new Date(),
     };
 
+    //Save data
     const response = await createPost(data as Data);
     return response;
   } catch (error) {

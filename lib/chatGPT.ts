@@ -25,10 +25,12 @@ export async function postPrompt(prompt: String) {
     };
 
     const response = await createPost(data as Data);
-
     return response;
   } catch (error) {
     console.log(error);
-    return error;
+    return {
+      staus: 500,
+      message: "Something went wrong",
+    };
   }
 }
